@@ -61,7 +61,7 @@ The structure of the notebooks is now pretty much the same everywhere.
 
 | Model | Size(weights) | training accurracy | Validation accurracy | Test accurracy | Path(training/evaluation Notebook) |
 |---|---|---|---|---|---|
-| BaseModel | 10'923 KB | 0.9923 | 0.8770 | 0.7193 | 03_base_model/base_model.ipynb |
+| BaseModel | 10'923 KB | 0.9860 | 0.8670 | 0.7390 | 03_base_model/base_model.ipynb |
 | ResNet50 | 100'806 KB | 0.9868 | 0.9540 | 0.9182 | 04_resnet_50/resnet_50_model.ipynb |
 | EffcientNetV2L | 467'350 KB | 0.9760 | 0.9700 | 0.9501 | 05_efficientNetV2L/efficient_net_v2l_model.ipynb |
 | MobileNetV3_Minimalistic | 4'435 KB | 0.9933  | 0.9680 | 0.9092 | 06_mobileNetV3_mini/mobilenet_v3_mini_model.ipynb |

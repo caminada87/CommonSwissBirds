@@ -66,13 +66,16 @@ The structure of the notebooks is now pretty much the same everywhere.
 | EffcientNetV2L | 467'350 KB | 0.9760 | 0.9700 | 0.9501 | 05_efficientNetV2L/efficient_net_v2l_model.ipynb |
 | MobileNetV3_Minimalistic | 4'435 KB | 0.9933  | 0.9680 | 0.9092 | 06_mobileNetV3_mini/mobilenet_v3_mini_model.ipynb |
 | VGG16 | 59'628 KB | 0.9985 | 0.9640 | 0.9206 | 07_VGG16/vgg_16_model.ipynb |
+| VGG16_original_head | 524'675 KB | 0.9990 | 0.9230 | 0.8797 | 09_VGG16_original_head/vgg_16_model_original_head.ipynb |
 | custom VGG16 | 524'674 KB | 0.9983 | 0.9050 | 0.7905 | 08_custom_CNN/custom_CNN.ipynb |
+
 
 **Observations**
 
-- Why is the custom VGG16 almost 10 times bigger than VGG 16? Because in the custom one i strictly applied the head from the riginal architecture flatten/dense(4096)/dense(4096/dense(10)) instead of using my own head (GlobalAveragePooling2D/dense(1024)/dense(10))
+- Why is the "custom VGG16" almost 10 times bigger than VGG 16? Because in the custom one i strictly applied the head from the riginal architecture flatten/dense(4096)/dense(4096/dense(10)) instead of using my own head (GlobalAveragePooling2D/dense(1024)/dense(10)).
+For a better comparison I implemented also a VGG with a quite original head "VGG16_original_head". It is very interesting to see (as expected) that: **VGG16 > VGG16_original_head > custom VGG16** --> VGG16 is best because with the head here uses GlobalAveragePooling, wich was not invented yet when VGG16 came out. VGG16_original_head is second, it usses the flatten and 2 hidden layer head like in the original architecture. It's still better than the custom one because of the huge amount of pretraining the weights on ImageNet.
 
-- The custom VGG16 takes many epochs to learn because it has to learn everything from the beginning. It is also quite overfitting as we see in the difference between the training/val accurracy and the test accurracy in the evaluation.
+- The "custom VGG16" takes many epochs to learn because it has to learn everything from the beginning. It is also quite overfitting as we see in the difference between the training/val accurracy and the test accurracy in the evaluation.
 
 - The only model which was not getting better during finetuning was the MobileNetV3_Minimalistic.
 

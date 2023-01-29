@@ -22,6 +22,39 @@ def recompile_custom_output(base_model):
 
     return model
 
+def recompile_vgg16_output(base_model):
+    from tensorflow.keras.layers import Dense, Flatten, GlobalAveragePooling2D
+    from tensorflow.keras.models import Model
+    from tensorflow.keras.optimizers import SGD
+    
+    
+    flatten_input_shape=(None, 7, 7, 512)
+    dense_input_shape=(None, 25088)
+
+    # add a global spatial average pooling layer
+    x = base_model.output
+    x = Flatten(input_shape=flatten_input_shape)(x,)
+    # add a fully-connected layer
+    x = Dense(4096, input_shape=(dense_input_shape), activation='relu')(x)
+    x = Dense(4096, activation='relu')(x)
+    # and a logistic layer with the 10 bird classes
+    predictions = Dense(10, activation='softmax')(x)
+
+    model = Model(inputs=base_model.input, outputs=predictions)
+
+    # first: train only the top layers (which were randomly initialized)
+    # i.e. freeze all convolutional ResNet50 layers
+    for layer in base_model.layers:
+        layer.trainable = False
+
+
+    opt = SGD(learning_rate=1e-3, momentum=0.9)
+
+    # compile the model (should be done *after* setting layers to non-trainable)
+    model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
+
+    return model
+
 def plot_history(history, filename=None):
     """Plots or stores the history of an optimization run
     Parameters: 
@@ -95,6 +128,27 @@ def plot_showcase(showcase_ds, class_names, predictions):
                 class_name= class_names[labels[j].numpy()]
                 prediction_name = class_names[predictions[j].argmax()]
                 title_obj = plt.title("C: " + class_names[labels[j].numpy()] + " || P: " + class_names[predictions[j].argmax()])
+                if class_name != prediction_name:
+                    plt.setp(title_obj, color='r') 
+                plt.axis(False)
+                j=j+1
+    plt.show()
+
+def plot_showcase_categorical(showcase_ds, class_names, predictions):
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    plt.figure(figsize=(25,16))
+    for i in range(1):
+        for images,labels in showcase_ds.take(1):
+            j=0
+            for image in images:
+                image = image/255.
+                plt.subplot(6,5,j+1)
+                plt.imshow(image)
+                class_name= class_names[np.argmax(labels[j].numpy())]
+                prediction_name = class_names[predictions[j].argmax()]
+                title_obj = plt.title("C: " + class_name + " || P: " + prediction_name)
                 if class_name != prediction_name:
                     plt.setp(title_obj, color='r') 
                 plt.axis(False)

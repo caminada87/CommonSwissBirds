@@ -71,9 +71,8 @@ The structure of the notebooks is now pretty much the same everywhere.
 | EffcientNetV2L | 467'350 KB | 0.9760 | 0.9700 | 0.9501 | 05_efficientNetV2L/efficient_net_v2l_model.ipynb |
 | MobileNetV3_Minimalistic | 4'435 KB | 0.9933  | 0.9680 | 0.9092 | 06_mobileNetV3_mini/mobilenet_v3_mini_model.ipynb |
 | VGG16 | 59'628 KB | 0.9985 | 0.9640 | 0.9206 | 07_VGG16/vgg_16_model.ipynb |
-| VGG16_original_head | 524'675 KB | 0.9990 | 0.9230 | 0.8797 | 09_VGG16_original_head/vgg_16_model_original_head.ipynb |
 | custom VGG16 | 524'674 KB | 0.9983 | 0.9050 | 0.7905 | 08_custom_CNN/custom_CNN.ipynb |
-
+| VGG16_original_head | 524'675 KB | 0.9990 | 0.9230 | 0.8797 | 09_VGG16_original_head/vgg_16_model_original_head.ipynb |
 
 **Observations**
 

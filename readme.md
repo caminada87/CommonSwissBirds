@@ -15,9 +15,14 @@ There are not all pictures and models I saved in this git repo. But the complete
 > - 01_data_prep/notebook/crawl_chrome_selenium.ipynb
 2. it was planned to use Object Detecion from OpenCV to get the most accurate (bird) image details. Unfortunately, it turned out that 2 different models could not reliably draw bounding boxes around the birds in the images.
 3. I continued to use CV2 anyway to create image sections with dimension (224, 224), flip them and change brightness and contrast. Intermediate results were always saved.
-> Python code:
+>Executed Notebook:
+> - 01_data_prep/notebook/prepare_dataset.ipynb
+> 
+>Imported Python code:
 > - 01_data_prep/python/image_functions.py
 > - 01_data_prep/python/prepare_dataset.py
+
+
 4. to avoid data leakage, training/validation was separated from test/showcase images from the beginning. --> More precisely, the training set does not contain mirrored or otherwise modified versions of the images that are in the test set.
 5. finally this is how the datasets were created:
     - 02_data\99_dataset_preparation\train_images (5000 files. is divided into training and validation).

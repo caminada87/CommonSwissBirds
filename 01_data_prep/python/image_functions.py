@@ -130,8 +130,3 @@ def test():
                 cv2.imshow('Birds', image)
                 cv2.waitKey(500)
                 cv2.destroyAllWindows()
-
-#generate_standard_squares('../../02_data/02_manual_deletion', '../../02_data/03_standard_squares')
-#generate_horizontal_flips('../../02_data/03_standard_squares', '../../02_data/04_horizontal_flips')
-#generate_randomized_brightness_and_contrast_images('../../02_data/03_standard_squares', '../../02_data/05_randomized_brightness_contrast')
-generate_randomized_brightness_and_contrast_images('../../02_data/04_horizontal_flips', '../../02_data/06_flipped_randomized_brightness_contrast')
